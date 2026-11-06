@@ -1,0 +1,46 @@
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "22"
+  NEXT_TELEMETRY_DISABLED = "1"
+
+# Long-cache fingerprinted assets
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "DENY"
+
+# Pages from the old tracker build
+[[redirects]]
+  from = "/completion/*"
+  to = "/unlocks/"
+  status = 301
+[[redirects]]
+  from = "/settings/*"
+  to = "/sources/"
+  status = 301
+[[redirects]]
+  from = "/career/*"
+  to = "/challenges/"
+  status = 301
+[[redirects]]
+  from = "/calling-cards/*"
+  to = "/challenges/"
+  status = 301
+[[redirects]]
+  from = "/prestige/player/*"
+  to = "/prestige/"
+  status = 301
+[[redirects]]
+  from = "/prestige/weapon/*"
+  to = "/prestige/"
+  status = 301
